@@ -7,10 +7,6 @@ namespace handler {
 
 class Register final {
 public:
-    Register()                 = default;
-    Register(const Register &) = default;
-    Register(Register      &&) = default;
-
     [[ nodiscard ]]
     crow::response operator()(const crow::request &request) const;
 

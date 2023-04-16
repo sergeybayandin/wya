@@ -7,10 +7,6 @@ namespace handler {
 
 class Authorize final {
 public:
-    Authorize()                      = default;
-    Authorize(const Authorize &) = default;
-    Authorize(Authorize      &&) = default;
-
     [[ nodiscard ]]
     crow::response operator()(const crow::request &request) const;
 
