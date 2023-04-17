@@ -1,10 +1,10 @@
-#include "wyawidget.h"
+#include "gui/wyawidget.h"
 
 #include <QApplication>
 
 int main(int argc, char *argv[]) {
-    QApplication app{argc, argv};
-    WyaWidget    wyaWidget;
+    QApplication   app{argc, argv};
+    gui::WyaWidget wyaWidget;
 
     wyaWidget.show();
 

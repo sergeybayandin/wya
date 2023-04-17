@@ -1,15 +1,25 @@
-QT     += widgets
+QT     += core widgets network
 CONFIG += c++1z
 
 INCLUDEPATH += include/
 
-SOURCES += main.cpp
+# main
+SOURCES += src/main.cpp
 
-HEADERS += \
-    include/wyawidget.h
+# gui
+HEADERS +=              \
+    include/gui/wyawidget.h
 
-SOURCES += \
-    src/wyawidget.cpp
+SOURCES +=                \
+    src/gui/wyawidget.cpp
 
+# core
+HEADERS +=                      \
+    include/core/serverconfig.h
+    
+SOURCES +=                    \
+    src/core/serverconfig.cpp
+
+# ui
 FORMS += \
     ui/wyawidget.ui

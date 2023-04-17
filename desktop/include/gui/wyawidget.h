@@ -2,10 +2,13 @@
 #define WYAWIDGET_H
 
 #include <QWidget>
+#include <QNetworkAccessManager>
 
 namespace Ui {
 class wyaWidget;
 }
+
+namespace gui {
 
 class WyaWidget : public QWidget
 {
@@ -20,7 +23,10 @@ private slots:
     void on_registerPushButton_clicked();
 
 private:
-    Ui::wyaWidget *ui;
+    Ui::wyaWidget         *ui;
+    QNetworkAccessManager *manager_;
 };
+
+} // gui
 
 #endif // WYAWIDGET_H
