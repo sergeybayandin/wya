@@ -9,8 +9,11 @@ include_directories(third_party/crow/include)
 
 set(SOURCES
     src/main.cpp
+
     src/handler/authorize.cpp
     src/handler/register.cpp
+    src/handler/create_group.cpp
+
     src/db/database_config.cpp
     src/db/database_connections.cpp
 )

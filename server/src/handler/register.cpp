@@ -17,11 +17,11 @@ try_register_user(
         db::DatabaseConnections::connections().current_connection()
     };
 
-    auto exists{std::get<0>(transaction.query1<bool>(
+    auto [exists]{transaction.query1<bool>(
         "SELECT EXISTS(SELECT 1 FROM auth WHERE login="s +
         transaction.quote(login) +
         ")"s
-    ))};
+    )};
 
     if (!exists) {
         transaction.exec(

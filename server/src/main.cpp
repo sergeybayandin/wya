@@ -1,5 +1,4 @@
-#include "handler/authorize.h"
-#include "handler/register.h"
+#include "handler/handler.h"
 
 #include "db/database_connections.h"
 
@@ -27,6 +26,9 @@ int main(int argc, char *argv[]) {
 
     CROW_ROUTE(app, "/register")
         .methods("POST"_method)(handler::Register{});
+
+    CROW_ROUTE(app, "/create_group")
+        .methods("POST"_method)(handler::CreateGroup{});
 
     app.concurrency(concurrency).port(port).run();
 
