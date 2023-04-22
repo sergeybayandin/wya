@@ -18,14 +18,14 @@ try_register_user(
     };
 
     auto [exists]{transaction.query1<bool>(
-        "SELECT EXISTS(SELECT 1 FROM auth WHERE login="s +
+        "SELECT EXISTS(SELECT 1 FROM users WHERE login="s +
         transaction.quote(login) +
         ")"s
     )};
 
     if (!exists) {
         transaction.exec(
-            "INSERT INTO auth (login_password_hash, login) "s +
+            "INSERT INTO users (login_password_hash, login) "s +
             "VALUES ("s +
                 transaction.quote(login_password_hash) + ","s +
                 transaction.quote(login) +

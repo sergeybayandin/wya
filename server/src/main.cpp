@@ -5,6 +5,7 @@
 #include <charconv>
 #include <string_view>
 
+[[ nodiscard ]]
 std::optional<short> parse_arguments(int argc, char *argv[]);
 
 int main(int argc, char *argv[]) {
@@ -29,6 +30,9 @@ int main(int argc, char *argv[]) {
 
     CROW_ROUTE(app, "/create_group")
         .methods("POST"_method)(handler::CreateGroup{});
+
+    CROW_ROUTE(app, "/friends&groups")
+        .methods("POST"_method)(handler::FriendsAndGroups{});
 
     app.concurrency(concurrency).port(port).run();
 

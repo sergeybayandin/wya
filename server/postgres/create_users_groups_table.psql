@@ -1,0 +1,13 @@
+drop table users_groups;
+create table users_groups (
+    user_id  int,
+    group_id int,
+
+    constraint fk_users
+        foreign key(user_id)
+            references users(user_id),
+
+    constraint fk_groups
+        foreign key(group_id)
+            references groups(group_id)
+);

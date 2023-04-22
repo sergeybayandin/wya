@@ -13,6 +13,7 @@ set(SOURCES
     src/handler/authorize.cpp
     src/handler/register.cpp
     src/handler/create_group.cpp
+    src/handler/friends_and_groups.cpp
 
     src/db/database_config.cpp
     src/db/database_connections.cpp

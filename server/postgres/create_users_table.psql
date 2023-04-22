@@ -1,6 +1,6 @@
-drop table auth;
+drop table users;
 
-create table auth (
+create table users (
     user_id             serial  primary key,
     login               varchar unique,
     login_password_hash varchar unique

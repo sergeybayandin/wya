@@ -13,7 +13,7 @@ try_authorize_user(const std::string &login_password_hash) {
     };
 
     auto opt{transaction.query01<int>(
-        "SELECT user_id FROM auth WHERE login_password_hash=" +
+        "SELECT user_id FROM users WHERE login_password_hash=" +
         transaction.quote(login_password_hash)
     )};
 
