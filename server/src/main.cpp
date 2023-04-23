@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
 
     crow::SimpleApp app;        
 
-    auto port{*opt};
+    auto port       {*opt};
     auto concurrency{std::thread::hardware_concurrency()};
 
     db::DatabaseConnections::connections().set_count(concurrency);
@@ -33,6 +33,9 @@ int main(int argc, char *argv[]) {
 
     CROW_ROUTE(app, "/friends&groups")
         .methods("POST"_method)(handler::FriendsAndGroups{});
+
+    CROW_ROUTE(app, "/global_search")
+        .methods("POST"_method)(handler::GlobalSearch{});
 
     app.concurrency(concurrency).port(port).run();
 

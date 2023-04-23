@@ -14,6 +14,7 @@ set(SOURCES
     src/handler/register.cpp
     src/handler/create_group.cpp
     src/handler/friends_and_groups.cpp
+    src/handler/global_search.cpp
 
     src/db/database_config.cpp
     src/db/database_connections.cpp
