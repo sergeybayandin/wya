@@ -22,13 +22,15 @@ SOURCES +=                              \
     src/gui/widget/groupstabwidget.cpp
 
 # gui/box
-HEADERS +=                           \
-    include/gui/box/creategroupbox.h \
-    include/gui/box/groupbox.h
+HEADERS +=                                 \
+    include/gui/box/creategroupbox.h       \
+    include/gui/box/groupbox.h             \
+    include/gui/box/globalsearchgroupbox.h
     
-SOURCES +=                         \
-    src/gui/box/creategroupbox.cpp \
-    src/gui/box/groupbox.cpp
+SOURCES +=                               \
+    src/gui/box/creategroupbox.cpp       \
+    src/gui/box/groupbox.cpp             \
+    src/gui/box/globalsearchgroupbox.cpp
     
 # core
 HEADERS +=                      \
@@ -57,6 +59,7 @@ FORMS +=                          \
     ui/widget/lobbywidget.ui
     
 # ui/box
-FORMS +=                     \
-    ui/box/creategroupbox.ui \
-    ui/box/groupbox.ui
+FORMS +=                           \
+    ui/box/creategroupbox.ui       \
+    ui/box/groupbox.ui             \
+    ui/box/globalsearchgroupbox.ui

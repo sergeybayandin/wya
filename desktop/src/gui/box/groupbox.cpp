@@ -19,6 +19,10 @@ GroupBox::~GroupBox() {
     delete ui;
 }
 
+QLabel *GroupBox::groupNameLabel() const noexcept {
+    return ui->groupNameLabel;
+}
+
 void GroupBox::_setGroupBox() {
     const auto &g{core::User::user().groups()[groupId_]};
     ui->groupNameLabel->setText(g.name());

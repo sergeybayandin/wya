@@ -69,6 +69,18 @@ void WyaWidget::_setConnects() {
         lobbyWidget_,
         SLOT(displayFriendsAndGroups())
     );
+    connect(
+        lobbyWidget_,
+        SIGNAL(needToGlobalSearch(const QString&)),
+        this,
+        SLOT(_globalSearch(const QString&))
+    );
+    connect(
+        this,
+        SIGNAL(needToDisplayGlobalSearchResults(const QVector<QPair<int, QString>>&)),
+        lobbyWidget_,
+        SLOT(displayGlobalSearchResults(const QVector<QPair<int, QString>>&))
+    );
 }
 
 void WyaWidget::_authorizeUser(const QString &login, const QString &password) {
@@ -238,7 +250,6 @@ void WyaWidget::_doLobby(int userId) {
             ui->stackedWidget->setCurrentWidget(lobbyWidget_);
 
             qDebug() << "Lobby preparing is finished!!\n";
-
             qDebug() << "Groups count is " << core::User::user().groups().size() << '\n';
         }
         reply->deleteLater();
@@ -249,6 +260,52 @@ void WyaWidget::_doCreateGroup(int groupId, const QString &groupName) {
     qDebug() << "Group \'" << groupName << "\' created!! Group id " << groupId << '\n';
     core::User::user().addGroup(core::user::Group{groupId, groupName});
     emit needToDisplayCreatedGroup(groupId);
+}
+
+void WyaWidget::_globalSearch(const QString &groupNamePrefix) {
+    QJsonObject obj{
+        {"user_id", core::User::user().id()},
+        {"group_name_prefix", groupNamePrefix}
+    };
+
+    QNetworkRequest request{
+        core::ServerConfig::config().url() + "/global_search"
+    };
+
+    request.setHeader(
+        QNetworkRequest::ContentTypeHeader,
+        "application/json"
+    );
+
+    auto reply{manager_->post(
+        request, QJsonDocument{obj}.toJson()
+    )};
+
+    connect(reply, &QNetworkReply::finished, this, [reply, this]() {
+        if (reply->error() != QNetworkReply::NoError) {
+            qDebug() << "/global_search: " << reply->errorString() << '\n';
+        } else {
+            auto doc                     {QJsonDocument::fromJson(reply->readAll())};
+            auto globalSearchResultsArray(doc["global_search_result"].toArray());
+
+            QVector<QPair<int, QString>> globalSearchResults;
+
+            globalSearchResults.reserve(
+                globalSearchResultsArray.size()
+            );
+
+            for (const auto &jsonValue : globalSearchResultsArray) {
+                auto obj{jsonValue.toObject()};
+                globalSearchResults += QPair{
+                    obj["group_id"].toInt(),
+                    obj["group_name"].toString()
+                };
+            }
+
+            emit needToDisplayGlobalSearchResults(globalSearchResults);
+        }
+        reply->deleteLater();
+    });
 }
 
 } // widget

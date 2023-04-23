@@ -3,6 +3,7 @@
 
 #include "gui/box/creategroupbox.h"
 #include "gui/box/groupbox.h"
+#include "gui/box/globalsearchgroupbox.h"
 
 #include <QWidget>
 
@@ -20,9 +21,28 @@ public:
     explicit GroupsTabWidget(QWidget *parent = nullptr);
     ~GroupsTabWidget();
 
+    [[ nodiscard ]]
     box::CreateGroupBox *createGroupBox() const noexcept;
 
-    void addGroup(box::GroupBox *groupBox);
+    [[ nodiscard ]]
+    box::GroupBox *groupBoxAt(int i) const noexcept;
+
+    [[ nodiscard ]]
+    box::GroupBox *globalSearchGroupBoxAt(int i) const noexcept;
+
+    [[ nodiscard ]]
+    QLabel *globalSearchLabel() const noexcept;
+
+    [[ nodiscard ]]
+    int groupBoxesCount() const noexcept;
+
+    [[ nodiscard ]]
+    int globalSearchGroupBoxesCount() const noexcept;
+
+    void addGroupBox(box::GroupBox *groupBox);
+    void addGlobalSearchGroupBox(box::GlobalSearchGroupBox *globalSearchGroupBox);
+
+    void clearGlobalSearchGroupBoxes();
 
 private:
     Ui::GroupsTabWidget *ui;

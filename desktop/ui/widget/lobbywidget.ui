@@ -53,7 +53,7 @@
        <item>
         <widget class="QLineEdit" name="searchLineEdit">
          <property name="focusPolicy">
-          <enum>Qt::NoFocus</enum>
+          <enum>Qt::ClickFocus</enum>
          </property>
          <property name="placeholderText">
           <string>Поиск</string>

@@ -7,6 +7,8 @@ namespace Ui {
 class GroupBox;
 }
 
+class QLabel;
+
 namespace gui::box {
 
 class GroupBox : public QGroupBox
@@ -17,12 +19,14 @@ public:
     explicit GroupBox(int groupId, QWidget *parent = nullptr);
     ~GroupBox();
 
+    QLabel *groupNameLabel() const noexcept;
+
 private:
     void _setGroupBox();
 
 private:
     Ui::GroupBox *ui;
-    int           groupId_;;
+    int           groupId_;
 };
 
 } // box

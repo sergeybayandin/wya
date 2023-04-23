@@ -24,12 +24,17 @@ public:
 signals:
     void needToDisplayCreatedGroup(int groupId);
     void needToDisplayFriendsAndGroups();
+    void needToDisplayGlobalSearchResults(
+        const QVector<QPair<int, QString>> &globalSearchResults
+    );
 
 private slots:
     void _authorizeUser(const QString &login, const QString &password);
     void _registerUser(const QString &login, const QString &password);
 
     void _createGroup(const QString &groupName);
+
+    void _globalSearch(const QString &prefix);
 
 private:
     void _doLobby(int userId);
