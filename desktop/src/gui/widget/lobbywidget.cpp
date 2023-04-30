@@ -44,7 +44,7 @@ GroupsTabWidget *LobbyWidget::groupsTabWidget() const noexcept {
 
 void LobbyWidget::displayCreatedGroup(int groupId) {
     auto groupNamePrefix{ui->searchLineEdit->text()};
-    auto groupBox       {new box::GroupBox{groupId}};
+    auto groupBox       {_createGroupBox(groupId)};
     auto groupNameText  {groupBox->groupNameLabel()->text()};
 
     groupBox->setHidden(!groupNameText.startsWith(groupNamePrefix));
