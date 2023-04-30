@@ -7,6 +7,40 @@
 namespace {
 
 [[ nodiscard ]]
+crow::json::wvalue::list execute_friends(
+    pqxx::work &transaction, const std::string &suser_id
+) {
+    crow::json::wvalue::list friends;
+
+    return friends;
+}
+
+[[ nodiscard ]]
+crow::json::wvalue::list execute_groups(
+    pqxx::work &transaction, const std::string &suser_id
+) {
+    using namespace std::string_literals;
+
+    auto squery{
+        "SELECT ug.group_id, g.group_name "s + 
+        "FROM users_groups ug, groups g "s +
+        "WHERE  ug.user_id="s + suser_id + " AND ug.group_id=g.group_id "s +
+        "UNION SELECT group_id, group_name FROM groups WHERE owner_id="s + suser_id
+    };
+
+    crow::json::wvalue::list groups;
+
+    for (auto [group_id, group_name] : transaction.query<int, std::string>(squery)) {
+        groups.push_back(crow::json::wvalue{
+            {"group_id",   group_id},
+            {"group_name", group_name}
+        });
+    }
+
+    return groups;
+}
+
+[[ nodiscard ]]
 std::pair<
     crow::json::wvalue::list,
     crow::json::wvalue::list
@@ -17,23 +51,10 @@ std::pair<
         db::DatabaseConnections::connections().current_connection()
     };
 
-    crow::json::wvalue::list friends;
-    crow::json::wvalue::list groups;
-
     auto suser_id{std::to_string(user_id)};
-    auto squery  {
-        "SELECT ug.group_id, g.group_name "s + 
-        "FROM users_groups ug, groups g "s +
-        "WHERE  ug.user_id="s + suser_id + " AND ug.group_id=g.group_id "s +
-        "UNION SELECT group_id, group_name FROM groups WHERE owner_id="s + suser_id
-    };
 
-    for (auto [group_id, group_name] : transaction.query<int, std::string>(squery)) {
-        groups.push_back(crow::json::wvalue{
-            {"group_id",   group_id},
-            {"group_name", group_name}
-        });
-    }
+    auto friends(execute_friends(transaction, suser_id));
+    auto groups (execute_groups(transaction, suser_id));
 
     transaction.commit();
 

@@ -1,4 +1,4 @@
-QT     += core widgets network
+QT     += core widgets network websockets
 CONFIG += c++1z
 
 INCLUDEPATH += include/
@@ -21,16 +21,25 @@ SOURCES +=                              \
     src/gui/widget/friendstabwidget.cpp \
     src/gui/widget/groupstabwidget.cpp
 
+# gui/dialog
+HEADERS +=                               \
+    include/gui/dialog/groupchatdialog.h
+
+SOURCES +=                             \
+    src/gui/dialog/groupchatdialog.cpp
+
 # gui/box
 HEADERS +=                                 \
     include/gui/box/creategroupbox.h       \
     include/gui/box/groupbox.h             \
-    include/gui/box/globalsearchgroupbox.h
+    include/gui/box/globalsearchgroupbox.h \
+    include/gui/box/messagebox.h
     
 SOURCES +=                               \
     src/gui/box/creategroupbox.cpp       \
     src/gui/box/groupbox.cpp             \
-    src/gui/box/globalsearchgroupbox.cpp
+    src/gui/box/globalsearchgroupbox.cpp \
+    src/gui/box/messagebox.cpp
     
 # core
 HEADERS +=                      \
@@ -50,6 +59,10 @@ SOURCES +=                   \
     src/core/user/group.cpp  \
     src/core/user/friend.cpp
 
+# core/types
+HEADERS +=                      \
+    include/core/types/action.h
+
 # ui/widget
 FORMS +=                          \
     ui/widget/friendstabwidget.ui \
@@ -62,4 +75,9 @@ FORMS +=                          \
 FORMS +=                           \
     ui/box/creategroupbox.ui       \
     ui/box/groupbox.ui             \
-    ui/box/globalsearchgroupbox.ui
+    ui/box/globalsearchgroupbox.ui \
+    ui/box/messagebox.ui
+
+# ui/dialog
+FORMS +=                         \
+    ui/dialog/groupchatdialog.ui

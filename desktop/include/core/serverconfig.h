@@ -14,8 +14,12 @@ public:
     [[ nodiscard ]]
     QString url() const;
 
+    [[ nodiscard ]]
+    QString webSocketUrl() const;
+
 private:
     QString url_;
+    QString webSocketUrl_;
 };
 
 } // core

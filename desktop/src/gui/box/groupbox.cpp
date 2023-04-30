@@ -4,6 +4,8 @@
 
 #include "gui/box/groupbox.h"
 
+#include <QMouseEvent>
+
 namespace gui::box {
 
 GroupBox::GroupBox(int groupId, QWidget *parent)
@@ -24,8 +26,22 @@ QLabel *GroupBox::groupNameLabel() const noexcept {
 }
 
 void GroupBox::_setGroupBox() {
-    const auto &g{core::User::user().groups()[groupId_]};
-    ui->groupNameLabel->setText(g.name());
+    ui->groupNameLabel->setText(
+        core::User::user().groups()[groupId_].name()
+    );
+}
+
+void GroupBox::mousePressEvent(QMouseEvent *mouseEvent) {
+    QGroupBox::mousePressEvent(mouseEvent);
+}
+
+void GroupBox::mouseReleaseEvent(QMouseEvent *mouseEvent) {
+    emit groupBoxClicked(groupId_);
+    QGroupBox::mouseReleaseEvent(mouseEvent);
+}
+
+int GroupBox::groupId() const noexcept {
+    return groupId_;
 }
 
 } // box

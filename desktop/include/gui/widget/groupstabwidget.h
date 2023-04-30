@@ -28,25 +28,29 @@ public:
     box::GroupBox *groupBoxAt(int i) const noexcept;
 
     [[ nodiscard ]]
-    box::GroupBox *globalSearchGroupBoxAt(int i) const noexcept;
-
-    [[ nodiscard ]]
-    QLabel *globalSearchLabel() const noexcept;
-
-    [[ nodiscard ]]
     int groupBoxesCount() const noexcept;
 
     [[ nodiscard ]]
     int globalSearchGroupBoxesCount() const noexcept;
 
+    [[ nodiscard ]]
+    QLabel *globalSearchLabel() const noexcept;
+
     void addGroupBox(box::GroupBox *groupBox);
     void addGlobalSearchGroupBox(box::GlobalSearchGroupBox *globalSearchGroupBox);
 
     void clearGlobalSearchGroupBoxes();
+    void removeGlobalSearchGroupBox(int groupId);
+
+    [[ nodiscard ]]
+    bool hasGlobalSearchGroupBox(int groupId) const;
 
 private:
     Ui::GroupsTabWidget *ui;
     box::CreateGroupBox *createGroupBox_;
+
+    QHash<int, box::GroupBox *>             groupBoxes_;
+    QHash<int, box::GlobalSearchGroupBox *> globalSearchGroupBoxes_;
 };
 
 } // widget

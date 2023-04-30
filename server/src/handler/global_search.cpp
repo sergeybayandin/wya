@@ -18,7 +18,11 @@ global_search(int user_id, const std::string &group_name_prefix) {
     auto squery  {
         "SELECT group_id, group_name "s +
         "FROM groups "s +
-        "WHERE owner_id != "s + suser_id + " AND group_name LIKE \'"s + group_name_prefix + "%\'"s
+        "WHERE owner_id != "s + suser_id + 
+        " AND group_name LIKE \'"s + 
+        group_name_prefix + "%\'"s +
+        " AND group_id NOT IN "s + 
+        "(SELECT group_id FROM users_groups WHERE user_id="s + suser_id + ")"s
     };
 
     crow::json::wvalue::list global_search_result;

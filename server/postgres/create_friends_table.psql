@@ -1,0 +1,14 @@
+drop table friends;
+
+create table friends (
+    from_user_id int,
+    to_user_id   int,
+
+    constraint fk_users1
+        foreign key(from_user_id)
+            references users(user_id),
+
+    constraint fk_users2
+        foreign key(to_user_id)
+            references users(user_id)
+);

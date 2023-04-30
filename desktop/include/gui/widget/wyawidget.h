@@ -5,6 +5,8 @@
 #include "gui/widget/lobbywidget.h"
 
 #include <QWidget>
+
+#include <QWebSocket>
 #include <QNetworkAccessManager>
 
 namespace Ui {
@@ -27,6 +29,13 @@ signals:
     void needToDisplayGlobalSearchResults(
         const QVector<QPair<int, QString>> &globalSearchResults
     );
+    void needToDisplayReceivedMessageToGroup(
+        int            userId,
+        int            groupId,
+        const QString &userLogin,
+        const QString &textMessage
+    );
+    void needToDisplayJoinedGroup(int groupId);
 
 private slots:
     void _authorizeUser(const QString &login, const QString &password);
@@ -36,12 +45,23 @@ private slots:
 
     void _globalSearch(const QString &prefix);
 
+    void _handleWebSocketError(QAbstractSocket::SocketError error);
+    void _handleWebSocketConnected();
+    void _handleWebSocketBinaryMessageReceived(const QByteArray &binaryMessage);
+
+    void _sendToGroupTextMessage(int groupId, const QString &textMessage);
+    void _sendJoinUserToGroup(int groupId, const QString &groupName);
+
 private:
-    void _doLobby(int userId);
+    void _doFriendsAndGroups(int userId, const QString &login);
     void _doCreateGroup(int groupId, const QString &groupName);
 
     void _setStackedWidget();
+    void _setWebSocket();
     void _setConnects();
+
+    void _sendGoOnlineAction();
+    void _sendGoOfflineAction();
 
 private:
     Ui::WyaWidget *ui;
@@ -49,6 +69,7 @@ private:
     AuthWidget  *authWidget_;
     LobbyWidget *lobbyWidget_;
 
+    QWebSocket            *webSocket_;
     QNetworkAccessManager *manager_;
 };
 

@@ -21,4 +21,17 @@ GlobalSearchGroupBox::~GlobalSearchGroupBox() {
     delete ui;
 }
 
+void GlobalSearchGroupBox::mousePressEvent(QMouseEvent *mouseEvent) {
+    QGroupBox::mousePressEvent(mouseEvent);
+}
+
+void GlobalSearchGroupBox::mouseReleaseEvent(QMouseEvent *mouseEvent) {
+    emit globalSearchGroupBoxClicked(groupId_, ui->groupNameLabel->text());
+    QGroupBox::mouseReleaseEvent(mouseEvent);
+}
+
+int GlobalSearchGroupBox::groupId() const noexcept {
+    return groupId_;
+}
+
 } // box

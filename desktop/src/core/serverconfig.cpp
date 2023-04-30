@@ -11,4 +11,8 @@ QString ServerConfig::url() const {
     return url_;
 }
 
+QString ServerConfig::webSocketUrl() const {
+    return webSocketUrl_;
+}
+
 } // core

@@ -19,7 +19,18 @@ public:
     explicit GroupBox(int groupId, QWidget *parent = nullptr);
     ~GroupBox();
 
+    [[ nodiscard ]]
     QLabel *groupNameLabel() const noexcept;
+
+    [[ nodiscard ]]
+    int groupId() const noexcept;
+
+signals:
+    void groupBoxClicked(int groupId_);
+
+protected:
+    void mousePressEvent(QMouseEvent *mouseEvent)   override;
+    void mouseReleaseEvent(QMouseEvent *mouseEvent) override;
 
 private:
     void _setGroupBox();

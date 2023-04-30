@@ -37,6 +37,13 @@ int main(int argc, char *argv[]) {
     CROW_ROUTE(app, "/global_search")
         .methods("POST"_method)(handler::GlobalSearch{});
 
+    CROW_ROUTE(app, "/join_group")
+        .methods("POST"_method)(handler::JoinGroup{});
+
+    CROW_ROUTE(app, "/ws")
+        .websocket()
+        .onmessage(handler::ws::OnMessage{});
+
     app.concurrency(concurrency).port(port).run();
 
     return 0;

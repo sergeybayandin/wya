@@ -15,9 +15,14 @@ set(SOURCES
     src/handler/create_group.cpp
     src/handler/friends_and_groups.cpp
     src/handler/global_search.cpp
+    src/handler/join_group.cpp
+
+    src/handler/ws/on_message.cpp
 
     src/db/database_config.cpp
     src/db/database_connections.cpp
+
+    src/net/online_users.cpp
 )
 
 add_executable(server ${SOURCES})
