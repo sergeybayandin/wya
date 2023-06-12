@@ -27,7 +27,7 @@ public:
     explicit LobbyWidget(QWidget *parent = nullptr);
     ~LobbyWidget();
 
-    [[ nodisacrd ]]
+    [[ nodiscard ]]
     FriendsTabWidget *friendsTabWidget() const noexcept;
 
     [[ nodiscard ]]

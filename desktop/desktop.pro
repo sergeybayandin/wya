@@ -4,10 +4,18 @@ CONFIG += c++1z
 INCLUDEPATH += include/
 
 # main
-SOURCES += src/main.cpp
+SOURCES += src/main.cpp \
+    friendbox.cpp \
+    friendinvitationbox.cpp \
+    globalsearchfriendbox.cpp \
+    include/gui/dialog/friendchatdialog.cpp
 
 # gui/widget
 HEADERS +=                                \
+    friendbox.h \
+    friendinvitationbox.h \
+    globalsearchfriendbox.h \
+    include/gui/dialog/friendchatdialog.h \
     include/gui/widget/friendstabwidget.h \
     include/gui/widget/groupstabwidget.h  \
     include/gui/widget/authwidget.h       \
@@ -65,6 +73,10 @@ HEADERS +=                      \
 
 # ui/widget
 FORMS +=                          \
+    friendbox.ui \
+    friendinvitationbox.ui \
+    globalsearchfriendbox.ui \
+    include/gui/dialog/friendchatdialog.ui \
     ui/widget/friendstabwidget.ui \
     ui/widget/groupstabwidget.ui  \
     ui/widget/authwidget.ui       \

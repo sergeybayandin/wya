@@ -13,6 +13,44 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <layout class="QVBoxLayout" name="verticalLayout_4">
+   <item>
+    <layout class="QVBoxLayout" name="friendBoxesVerticalLayout"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="invitesLabel">
+     <property name="text">
+      <string>Приглашения</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="friendInvitationBoxesVerticalLayout"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="globalSearchLabel">
+     <property name="text">
+      <string>Глобальный поиск</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="globalSearchFriendBoxesVerticalLayout"/>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>209</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

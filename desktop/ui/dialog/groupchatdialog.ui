@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
@@ -68,7 +71,7 @@
           <enum>QFrame::NoFrame</enum>
          </property>
          <property name="lineWidth">
-          <number>0</number>
+          <number>1</number>
          </property>
          <property name="widgetResizable">
           <bool>true</bool>

@@ -226,8 +226,6 @@ dialog::GroupChatDialog *LobbyWidget::_createOrReturnGroupChatDialog(
 
     auto groupChatDialog{new dialog::GroupChatDialog{groupId, groupName, this}};
 
-    groupChatDialog->setModal(true);
-
     connect(
         groupChatDialog,
         &dialog::GroupChatDialog::textMessageEntered,
