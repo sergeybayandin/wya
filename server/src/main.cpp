@@ -40,6 +40,18 @@ int main(int argc, char *argv[]) {
     CROW_ROUTE(app, "/join_group")
         .methods("POST"_method)(handler::JoinGroup{});
 
+    CROW_ROUTE(app, "/send_to_group")
+        .methods("POST"_method)(handler::SendToGroup{});
+
+    CROW_ROUTE(app, "/add_user")
+        .methods("POST"_method)(handler::AddUser{});
+
+    CROW_ROUTE(app, "/accept_user_invite")
+        .methods("POST"_method)(handler::AcceptUserInvite{});
+
+    CROW_ROUTE(app, "/send_to_friend")
+        .methods("POST"_method)(handler::SendToFriend{});
+
     CROW_ROUTE(app, "/ws")
         .websocket()
         .onmessage(handler::ws::OnMessage{});
@@ -50,12 +62,12 @@ int main(int argc, char *argv[]) {
 }
 
 std::optional<short> parse_arguments(int argc, char *argv[]) {
-    auto print_usage{[](const char *prog) {
+    auto print_usage{[prog = argv[0]]() {
         std::cerr << "Usage: " << prog << " [ port ]\n";
     }};
 
     if (argc != 2) {
-        print_usage(argv[0]);
+        print_usage();
         return std::nullopt;
     }
 
@@ -69,7 +81,7 @@ std::optional<short> parse_arguments(int argc, char *argv[]) {
     )};
 
     if (ec != std::errc{}) {
-        print_usage(argv[0]);
+        print_usage();
         return std::nullopt;
     }
 

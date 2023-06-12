@@ -7,6 +7,9 @@
 #include "handler/friends_and_groups.h"
 #include "handler/global_search.h"
 #include "handler/join_group.h"
+#include "handler/send_to_group.h"
+#include "handler/add_user.h"
+#include "handler/accept_user_invite.h"
 
 #include "ws/on_message.h"
 

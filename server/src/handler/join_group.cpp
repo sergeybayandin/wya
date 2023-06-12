@@ -17,7 +17,7 @@ void join_group(int user_id, int group_id) {
         "INSERT INTO users_groups VALUES("s +
             std::to_string(user_id) + ","s +
             std::to_string(group_id) +
-         ")"s
+        ")"s
     );
 
     transaction.commit();

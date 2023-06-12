@@ -3,11 +3,16 @@
 
 namespace types {
 
-enum Action {
+enum ClientAction {
     GoOnline,
-    SendToGroup,
-    SendToUser,
     GoOffline
+};
+
+enum ServerAction {
+    SendToGroup,
+    SendToFriend,
+    AddUser,
+    AcceptUserInvite
 };
 
 } // types

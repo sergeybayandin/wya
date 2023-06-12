@@ -1,0 +1,3 @@
+/home/sergey/Projects/wya/server/build/CMakeFiles/server.dir
+/home/sergey/Projects/wya/server/build/CMakeFiles/edit_cache.dir
+/home/sergey/Projects/wya/server/build/CMakeFiles/rebuild_cache.dir
