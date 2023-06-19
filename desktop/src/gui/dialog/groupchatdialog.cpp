@@ -33,12 +33,7 @@ void GroupChatDialog::addMessageBox(box::MessageBox *messageBox) {
 }
 
 void GroupChatDialog::on_messageLineEdit_returnPressed() {
-    auto textMessage{ui->messageLineEdit->text()};
-    if (!textMessage.isEmpty()) {
-        _addSelfMessageBox();
-        ui->messageLineEdit->clear();
-        emit textMessageEntered(groupId_, textMessage);
-    }
+    ui->sendPushButton->click();
 }
 
 void GroupChatDialog::_addSelfMessageBox() {
@@ -74,6 +69,15 @@ void GroupChatDialog::setChatPage() {
 
 void GroupChatDialog::setJoinPage() {
     ui->stackedWidget->setCurrentWidget(ui->joinPage);
+}
+
+void GroupChatDialog::on_sendPushButton_clicked() {
+    auto textMessage{ui->messageLineEdit->text()};
+    if (!textMessage.isEmpty()) {
+        _addSelfMessageBox();
+        ui->messageLineEdit->clear();
+        emit textMessageEntered(groupId_, textMessage);
+    }
 }
 
 } // dialog

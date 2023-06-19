@@ -4,6 +4,8 @@
 
 #include "db/database_connections.h"
 
+#include "types/action.h"
+
 #include <pqxx/pqxx>
 
 namespace {

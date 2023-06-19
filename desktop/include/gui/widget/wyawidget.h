@@ -26,16 +26,29 @@ public:
 signals:
     void needToDisplayCreatedGroup(int groupId);
     void needToDisplayFriendsAndGroups();
-    void needToDisplayGlobalSearchResults(
-        const QVector<QPair<int, QString>> &globalSearchResults
+    void needToDisplayFriendsGlobalSearchResults(
+        const QVector<QPair<int, QString>> &friendsGlobalSearchResults
     );
-    void needToDisplayReceivedMessageToGroup(
+    void needToDisplayGroupsGlobalSearchResults(
+        const QVector<QPair<int, QString>> &groupsGlobalSearchResults
+    );
+    void needToDisplayMessageToFriend(
+        int            userId,
+        const QString &textMessage
+    );
+    void needToDisplayMessageToGroup(
         int            userId,
         int            groupId,
         const QString &userLogin,
         const QString &textMessage
     );
+    void needToDisplayIncomingInvite(int userId);
+    void needToDisplayOutgoingInvite(int userId);
+    void needToDisplayFriend(int userId);
     void needToDisplayJoinedGroup(int groupId);
+    void needToDisplayAcceptedFriend(int fromUserId);
+    void needToStopDisplayOutgoingInvite(int toUserId);
+    void needToStopDisplayIncomingInvite(int fromUserId);
 
 private slots:
     void _authorizeUser(const QString &login, const QString &password);
@@ -43,14 +56,22 @@ private slots:
 
     void _createGroup(const QString &groupName);
 
-    void _globalSearch(const QString &prefix);
+    void _friendsGlobalSearch(const QString &userLoginPrefix);
+    void _groupsGlobalSearch(const QString &groupNamePrefix);
 
     void _handleWebSocketError(QAbstractSocket::SocketError error);
     void _handleWebSocketConnected();
     void _handleWebSocketBinaryMessageReceived(const QByteArray &binaryMessage);
 
     void _sendToGroupTextMessage(int groupId, const QString &textMessage);
-    void _sendJoinUserToGroup(int groupId, const QString &groupName);
+    void _joinUserToGroup(int groupId, const QString &groupName);
+
+    void _acceptIncomingInvite(int fromUserId);
+    void _rejectIncomingInvite(int fromUserId);
+    void _cancelOutgoingInvite(int toUserId);
+    void _addUser(int userId, const QString &userLogin);
+
+    void _sendToFriendTextMessage(int friendId, const QString &textMessage);
 
 private:
     void _doFriendsAndGroups(int userId, const QString &login);

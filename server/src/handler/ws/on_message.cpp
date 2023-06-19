@@ -17,7 +17,7 @@ void OnMessage::operator()(
         return;
     }
 
-    auto action{static_cast<types::Action>(
+    auto action{static_cast<types::ClientAction>(
         rjson["action"].i()
     )};
 

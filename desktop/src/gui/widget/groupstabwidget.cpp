@@ -10,8 +10,8 @@ GroupsTabWidget::GroupsTabWidget(QWidget *parent)
       createGroupBox_{new box::CreateGroupBox}
 {
     ui->setupUi(this);
+
     ui->verticalLayout->insertWidget(0, createGroupBox_);
-    ui->globalSearchLabel->setHidden(true);
 }
 
 GroupsTabWidget::~GroupsTabWidget() {

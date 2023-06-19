@@ -34,8 +34,11 @@ int main(int argc, char *argv[]) {
     CROW_ROUTE(app, "/friends&groups")
         .methods("POST"_method)(handler::FriendsAndGroups{});
 
-    CROW_ROUTE(app, "/global_search")
-        .methods("POST"_method)(handler::GlobalSearch{});
+    CROW_ROUTE(app, "/global_search/groups")
+        .methods("POST"_method)(handler::GroupsGlobalSearch{});
+
+    CROW_ROUTE(app, "/global_search/friends")
+        .methods("POST"_method)(handler::UsersGlobalSearch{});
 
     CROW_ROUTE(app, "/join_group")
         .methods("POST"_method)(handler::JoinGroup{});
@@ -48,6 +51,12 @@ int main(int argc, char *argv[]) {
 
     CROW_ROUTE(app, "/accept_user_invite")
         .methods("POST"_method)(handler::AcceptUserInvite{});
+
+    CROW_ROUTE(app, "/reject_user_invite")
+        .methods("POST"_method)(handler::RejectUserInvite{});
+
+    CROW_ROUTE(app, "/cancel_user")
+        .methods("POST"_method)(handler::CancelUser{});
 
     CROW_ROUTE(app, "/send_to_friend")
         .methods("POST"_method)(handler::SendToFriend{});

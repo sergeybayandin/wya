@@ -3,11 +3,18 @@
 
 namespace core::types {
 
-enum Action {
+enum ClientAction {
     GoOnline,
+    GoOffline
+};
+
+enum ServerAction {
     SendToGroup,
     SendToUser,
-    GoOffline
+    AddUser,
+    AcceptUserInvite,
+    RejectUserInvite,
+    CancelUser
 };
 
 } // types

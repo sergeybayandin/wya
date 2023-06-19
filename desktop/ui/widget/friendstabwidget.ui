@@ -18,14 +18,24 @@
     <layout class="QVBoxLayout" name="friendBoxesVerticalLayout"/>
    </item>
    <item>
-    <widget class="QLabel" name="invitesLabel">
+    <widget class="QLabel" name="incomingInvitesLabel">
      <property name="text">
-      <string>Приглашения</string>
+      <string>Входящие</string>
      </property>
     </widget>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="friendInvitationBoxesVerticalLayout"/>
+    <layout class="QVBoxLayout" name="incomingInviteBoxesVerticalLayout"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="outgoingInvitesLabel">
+     <property name="text">
+      <string>Исходящие</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="outgoingInviteBoxesVerticalLayout"/>
    </item>
    <item>
     <widget class="QLabel" name="globalSearchLabel">

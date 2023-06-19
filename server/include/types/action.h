@@ -12,7 +12,9 @@ enum ServerAction {
     SendToGroup,
     SendToFriend,
     AddUser,
-    AcceptUserInvite
+    AcceptUserInvite,
+    RejectUserInvite,
+    CancelUser
 };
 
 } // types

@@ -16,6 +16,12 @@ set(SOURCES
     src/handler/friends_and_groups.cpp
     src/handler/global_search.cpp
     src/handler/join_group.cpp
+    src/handler/send_to_group.cpp
+    src/handler/send_to_friend.cpp
+    src/handler/add_user.cpp
+    src/handler/accept_user_invite.cpp
+    src/handler/reject_user_invite.cpp
+    src/handler/cancel_user.cpp
 
     src/handler/ws/on_message.cpp
 

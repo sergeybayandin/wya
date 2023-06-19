@@ -35,6 +35,7 @@ signals:
 private slots:
     void on_messageLineEdit_returnPressed();
     void on_joinPushButton_clicked();
+    void on_sendPushButton_clicked();
 
 private:
     void _addSelfMessageBox();

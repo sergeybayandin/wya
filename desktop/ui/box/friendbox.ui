@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>FriendInvitationBox</class>
- <widget class="QGroupBox" name="FriendInvitationBox">
+ <class>FriendBox</class>
+ <widget class="QGroupBox" name="FriendBox">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,18 +13,11 @@
   <property name="windowTitle">
    <string>GroupBox</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="userNameLabel">
+    <widget class="QLabel" name="friendLoginLabel">
      <property name="text">
       <string/>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="acceptUserPushButton">
-     <property name="text">
-      <string>Принять</string>
      </property>
     </widget>
    </item>

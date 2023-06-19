@@ -4,6 +4,8 @@
 
 #include "net/online_users.h"
 
+#include "types/action.h"
+
 #include <pqxx/pqxx>
 
 namespace {
@@ -22,7 +24,7 @@ void add_user(
     transaction.exec0(
         "INSERT INTO invites VALUES("s +
             std::to_string(from_user_id) + ","s +
-            std::to_string(to_user_id)
+            std::to_string(to_user_id) +
 	")"s
     );
 
@@ -32,8 +34,9 @@ void add_user(
 
     if (online) {
         connection->send_binary(crow::json::wvalue{
-            {"from_user_id",    from_user_id},
-            {"from_user_login", from_user_login}    
+            {"action",     types::AddUser},
+            {"user_id",    from_user_id},
+            {"user_login", from_user_login}    
 	}.dump());
     }
 

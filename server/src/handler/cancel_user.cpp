@@ -1,4 +1,4 @@
-#include "handler/send_to_friend.h"
+#include "handler/cancel_user.h"
 
 #include "db/database_connections.h"
 
@@ -10,22 +10,26 @@
 
 namespace {
 
-void send_to_friend(int from_user_id, int to_user_id, const std::string &message) {
+void cancel_user(int from_user_id, int to_user_id) {
     using namespace std::string_literals;
 
     pqxx::work transaction{
         db::DatabaseConnections::connections().current_connection()
     };
 
-    auto [online, connection]{
-        net::OnlineUsers::users().try_connection(to_user_id)
+    auto squery{
+        "DELETE FROM invites WHERE from_user_id="s +
+        std::to_string(from_user_id) + " AND to_user_id="s + std::to_string(to_user_id)
     };
+
+    transaction.exec0(squery);
+
+    auto [online, connection]{net::OnlineUsers::users().try_connection(to_user_id)};
 
     if (online) {
         connection->send_binary(crow::json::wvalue{
-            {"action",  types::SendToFriend},
-            {"user_id", from_user_id},
-            {"message", message}	    
+            {"action",  types::CancelUser},
+            {"user_id", from_user_id}
         }.dump());
     }
 
@@ -36,18 +40,14 @@ void send_to_friend(int from_user_id, int to_user_id, const std::string &message
 
 namespace handler {
 
-crow::response SendToFriend::operator()(const crow::request &request) const {
+crow::response CancelUser::operator()(const crow::request &request) const {
     auto rjson{crow::json::load(request.body)};
 
     if (rjson.error()) {
         return crow::response{crow::BAD_REQUEST};
     }
 
-    send_to_friend(
-        rjson["from_user_id"].i(),
-        rjson["to_user_id"].i(),
-        static_cast<std::string>(rjson["message"].s())
-    );
+    cancel_user(rjson["from_user_id"].i(), rjson["to_user_id"].i());
 
     return crow::response{crow::OK};
 }

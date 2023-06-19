@@ -4,18 +4,10 @@ CONFIG += c++1z
 INCLUDEPATH += include/
 
 # main
-SOURCES += src/main.cpp \
-    friendbox.cpp \
-    friendinvitationbox.cpp \
-    globalsearchfriendbox.cpp \
-    include/gui/dialog/friendchatdialog.cpp
+SOURCES += src/main.cpp
 
 # gui/widget
 HEADERS +=                                \
-    friendbox.h \
-    friendinvitationbox.h \
-    globalsearchfriendbox.h \
-    include/gui/dialog/friendchatdialog.h \
     include/gui/widget/friendstabwidget.h \
     include/gui/widget/groupstabwidget.h  \
     include/gui/widget/authwidget.h       \
@@ -30,24 +22,34 @@ SOURCES +=                              \
     src/gui/widget/groupstabwidget.cpp
 
 # gui/dialog
-HEADERS +=                               \
-    include/gui/dialog/groupchatdialog.h
+HEADERS +=                                \
+    include/gui/dialog/groupchatdialog.h  \
+    include/gui/dialog/friendchatdialog.h
 
-SOURCES +=                             \
-    src/gui/dialog/groupchatdialog.cpp
+SOURCES +=                              \
+    src/gui/dialog/groupchatdialog.cpp  \
+    src/gui/dialog/friendchatdialog.cpp
 
 # gui/box
-HEADERS +=                                 \
-    include/gui/box/creategroupbox.h       \
-    include/gui/box/groupbox.h             \
-    include/gui/box/globalsearchgroupbox.h \
-    include/gui/box/messagebox.h
+HEADERS +=                                  \
+    include/gui/box/creategroupbox.h        \
+    include/gui/box/groupbox.h              \
+    include/gui/box/globalsearchgroupbox.h  \
+    include/gui/box/messagebox.h            \
+    include/gui/box/friendbox.h             \
+    include/gui/box/globalsearchfriendbox.h \
+    include/gui/box/incominginvitebox.h     \
+    include/gui/box/outgoinginvitebox.h
     
-SOURCES +=                               \
-    src/gui/box/creategroupbox.cpp       \
-    src/gui/box/groupbox.cpp             \
-    src/gui/box/globalsearchgroupbox.cpp \
-    src/gui/box/messagebox.cpp
+SOURCES +=                                \
+    src/gui/box/creategroupbox.cpp        \
+    src/gui/box/groupbox.cpp              \
+    src/gui/box/globalsearchgroupbox.cpp  \
+    src/gui/box/messagebox.cpp            \
+    src/gui/box/friendbox.cpp             \
+    src/gui/box/globalsearchfriendbox.cpp \
+    src/gui/box/incominginvitebox.cpp     \
+    src/gui/box/outgoinginvitebox.cpp
     
 # core
 HEADERS +=                      \
@@ -59,13 +61,17 @@ SOURCES +=                    \
     src/core/user.cpp
 
 # core/user
-HEADERS +=                     \
-    include/core/user/group.h  \
-    include/core/user/friend.h
+HEADERS +=                             \
+    include/core/user/group.h          \
+    include/core/user/friend.h         \
+    include/core/user/incominginvite.h \
+    include/core/user/outgoinginvite.h
 
-SOURCES +=                   \
-    src/core/user/group.cpp  \
-    src/core/user/friend.cpp
+SOURCES +=                           \
+    src/core/user/group.cpp          \
+    src/core/user/friend.cpp         \
+    src/core/user/incominginvite.cpp \
+    src/core/user/outgoinginvite.cpp
 
 # core/types
 HEADERS +=                      \
@@ -73,10 +79,6 @@ HEADERS +=                      \
 
 # ui/widget
 FORMS +=                          \
-    friendbox.ui \
-    friendinvitationbox.ui \
-    globalsearchfriendbox.ui \
-    include/gui/dialog/friendchatdialog.ui \
     ui/widget/friendstabwidget.ui \
     ui/widget/groupstabwidget.ui  \
     ui/widget/authwidget.ui       \
@@ -84,12 +86,17 @@ FORMS +=                          \
     ui/widget/lobbywidget.ui
     
 # ui/box
-FORMS +=                           \
-    ui/box/creategroupbox.ui       \
-    ui/box/groupbox.ui             \
-    ui/box/globalsearchgroupbox.ui \
-    ui/box/messagebox.ui
+FORMS +=                            \
+    ui/box/creategroupbox.ui        \
+    ui/box/groupbox.ui              \
+    ui/box/globalsearchgroupbox.ui  \
+    ui/box/messagebox.ui            \
+    ui/box/friendbox.ui             \
+    ui/box/globalsearchfriendbox.ui \
+    ui/box/incominginvitebox.ui     \
+    ui/box/outgoinginvitebox.ui
 
 # ui/dialog
-FORMS +=                         \
-    ui/dialog/groupchatdialog.ui
+FORMS +=                          \
+    ui/dialog/groupchatdialog.ui  \
+    ui/dialog/friendchatdialog.ui

@@ -1,6 +1,6 @@
-drop table friends;
+drop table invites;
 
-create table friends (
+create table invites(
     from_user_id int,
     to_user_id   int
 );

@@ -5,7 +5,15 @@
 
 namespace handler {
 
-class GlobalSearch final {
+class GroupsGlobalSearch final {
+public:
+    [[ nodiscard ]]
+    crow::response operator()(const crow::request &request) const;
+
+private:
+};
+
+class UsersGlobalSearch final {
 public:
     [[ nodiscard ]]
     crow::response operator()(const crow::request &request) const;

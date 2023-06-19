@@ -4,11 +4,13 @@
 
 #include "net/online_users.h"
 
+#include "types/action.h"
+
 #include <pqxx/pqxx>
 
 namespace {
 
-void accept_user_invite(int to_user_id, int from_user_id, const std::string &to_user_login) {
+void accept_user_invite(int to_user_id, int from_user_id) {
     using namespace std::string_literals;
 
     pqxx::work transaction{
@@ -25,7 +27,7 @@ void accept_user_invite(int to_user_id, int from_user_id, const std::string &to_
 
     transaction.exec0(
         "INSERT INTO friends VALUES("s +
-            sfrom_user_id + ","s + sto_user_id
+            sfrom_user_id + ","s + sto_user_id +
         ")"s
     );
 
@@ -35,8 +37,8 @@ void accept_user_invite(int to_user_id, int from_user_id, const std::string &to_
 
     if (online) {
         connection->send_binary(crow::json::wvalue{
-            {"from_user_id",  from_user_id},
-            {"to_user_login", to_user_login}
+            {"action",  types::AcceptUserInvite},
+            {"user_id", to_user_id},
         }.dump());
     }
 
@@ -56,8 +58,7 @@ crow::response AcceptUserInvite::operator()(const crow::request &request) const 
 
     accept_user_invite(
         rjson["to_user_id"].i(),
-        rjson["from_user_id"].i(),
-        static_cast<std::string>(rjson["to_user_login"].s())
+        rjson["from_user_id"].i()
     );
 
     return crow::response{crow::OK};

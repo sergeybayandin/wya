@@ -26,7 +26,7 @@ public:
     int groupId() const noexcept;
 
 signals:
-    void groupBoxClicked(int groupId_);
+    void groupBoxClicked(int groupId);
 
 protected:
     void mousePressEvent(QMouseEvent *mouseEvent)   override;

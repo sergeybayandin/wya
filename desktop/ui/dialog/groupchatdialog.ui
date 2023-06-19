@@ -82,7 +82,7 @@
             <x>0</x>
             <y>0</y>
             <width>420</width>
-            <height>307</height>
+            <height>305</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="messageBoxesVerticalLayout"/>
@@ -90,11 +90,22 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="messageLineEdit">
-         <property name="placeholderText">
-          <string>Введите сообщение</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLineEdit" name="messageLineEdit">
+           <property name="placeholderText">
+            <string>Введите сообщение</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="sendPushButton">
+           <property name="text">
+            <string>Отправить</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
